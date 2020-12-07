@@ -1,11 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
 
 const App = ({ 
             player1,
             player2,
             player1Scores,
-            player2Scores
+            player2Scores,
+            scoreReset,
           }) => (
   <>
       {/* header */}
@@ -52,7 +52,8 @@ const App = ({
       <hr />
 
       { /* reset button */}
-      <button className="btn btn-danger">Reset</button>
+      <button className="btn btn-danger"
+              onClick={ scoreReset }>Reset</button>
   </>
 );
 

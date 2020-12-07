@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { useReducer } from 'react';
 import { createStore } from "redux";
 
 const initialState = {
@@ -21,6 +20,11 @@ const reducer = (state, action) => {
       ...state,
       player2: state.player2 + 1
     };
+    case "SCORE_RESET": return initialState;
+    //   ...state,
+    //   player1: state.initialState,
+    //   player2: state.initialState
+    // };
     default: return state;
   }
 }
@@ -36,7 +40,8 @@ const render = () => {
         player1={ state.player1 }
         player2={ state.player2 }
         player1Scores={ () => store.dispatch({ type: "PLAYER_1_SCORED" }) }
-        player2Scores={ () => store.dispatch({ type: "PLAYER_2_SCORED" })} />
+        player2Scores={ () => store.dispatch({ type: "PLAYER_2_SCORED" }) }
+        scoreReset={ () => store.dispatch({ type: "SCORE_RESET" }) } />
     </React.StrictMode>,
     document.getElementById('root')
   );
