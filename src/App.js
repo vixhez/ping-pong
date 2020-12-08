@@ -24,10 +24,11 @@ const App = ({
                       <p className="card-text display-1">{ player1 }</p>
                   </div>
                   <div className="card-footer">
-                      <button className="form-control btn btn-success"
-                              onClick={ player1Reducer }>
-                                +
-                      </button>
+                  { winner === null ? (
+                        <div className="card-footer">
+                            <button className="btn btn-primary form-control" onClick={ player1Reducer }>+</button>
+                        </div>
+                    ) : null }
                   </div>
               </div>
           </div>
@@ -39,10 +40,11 @@ const App = ({
                       <p className="card-text display-1">{ player2 }</p>
                   </div>
                   <div className="card-footer">
-                      <button className="form-control btn btn-success"
-                              onClick={ player2Reducer }>
-                                +
-                      </button>
+                  { winner === null ? (
+                        <div className="card-footer">
+                            <button className="btn btn-primary form-control" onClick={ player2Reducer }>-</button>
+                        </div>
+                    ) : null }
                   </div>
               </div>
           </div>
