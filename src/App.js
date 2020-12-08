@@ -3,9 +3,11 @@ import './App.css';
 const App = ({ 
             player1,
             player2,
-            player1Scores,
-            player2Scores,
+            player1Reducer,
+            player2Reducer,
             scoreReset,
+            serving,
+            winner,
           }) => (
   <>
       {/* header */}
@@ -16,14 +18,14 @@ const App = ({
       {/* scores */}
       <div className="row mb-4">
           <div className="col-md-6 mt-4">
-              <div className="card text-center bg-dark text-white">
+              <div className={ (serving === 1 ? "card text-center bg-dark text-white" : "card text-center") }>
                   <h5 className="card-header">Player 1</h5>
                   <div className="card-body">
                       <p className="card-text display-1">{ player1 }</p>
                   </div>
                   <div className="card-footer">
                       <button className="form-control btn btn-success"
-                              onClick={ player1Scores }>
+                              onClick={ player1Reducer }>
                                 +
                       </button>
                   </div>
@@ -31,14 +33,14 @@ const App = ({
           </div>
 
           <div className="col-md-6 mt-4">
-              <div className="card text-center">
+              <div className={ (serving === 2 ? "card text-center bg-dark text-white" : "card text-center") }>
                   <h5 className="card-header">Player 2</h5>
                   <div className="card-body">
                       <p className="card-text display-1">{ player2 }</p>
                   </div>
                   <div className="card-footer">
                       <button className="form-control btn btn-success"
-                              onClick={ player2Scores }>
+                              onClick={ player2Reducer }>
                                 +
                       </button>
                   </div>
@@ -47,7 +49,9 @@ const App = ({
       </div>
 
       { /* winner message */}
-      <h2 className="alert alert-success">Player {/* winning player here */} wins!</h2>
+      { winner === 1 || winner === 2 ? (
+          <h2 className="alert alert-success">Player { winner } wins!</h2>
+      ) : null }
 
       <hr />
 
@@ -58,3 +62,5 @@ const App = ({
 );
 
 export default App;
+
+// { winner === null ? "" : "Player" } { winner === 1 ? "1 wins!" : "2 wins!" }

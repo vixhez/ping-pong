@@ -3,33 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore } from "redux";
 
-const initialState = {
-  player1: 0,
-  player2: 0,
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "PLAYER_1_SCORED": return {
-      ...state,
-      player1: state.player1 + 1
-    };
-    case "PLAYER_2_SCORED": return {
-      ...state,
-      player2: state.player2 + 1
-    };
-    case "SCORE_RESET": return initialState;
-    //   ...state,
-    //   player1: state.initialState,
-    //   player2: state.initialState
-    // };
-    default: return state;
-  }
-}
-
-const store = createStore(reducer, initialState);
+import store from "./store";
 
 const render = () => {
   const state = store.getState();
@@ -39,9 +14,12 @@ const render = () => {
       <App
         player1={ state.player1 }
         player2={ state.player2 }
-        player1Scores={ () => store.dispatch({ type: "PLAYER_1_SCORED" }) }
-        player2Scores={ () => store.dispatch({ type: "PLAYER_2_SCORED" }) }
-        scoreReset={ () => store.dispatch({ type: "SCORE_RESET" }) } />
+        player1Reducer={ () => store.dispatch({ type: "PLAYER_1_SCORED" }) }
+        player2Reducer={ () => store.dispatch({ type: "PLAYER_2_SCORED" }) }
+        scoreReset={ () => store.dispatch({ type: "SCORE_RESET" }) }
+        serving={ state.serving }
+        winner={ state.winner }
+        />
     </React.StrictMode>,
     document.getElementById('root')
   );
