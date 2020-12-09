@@ -1,6 +1,5 @@
 import initialState from "./initial";
 
-
 const player1Reducer = (state) => {
     return {
       ...state,

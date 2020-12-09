@@ -1,8 +1,20 @@
+// import { connect } from 'react-redux';
+// import Reset from './Reset';
+
+// const mapStateToProps = ({ reset }) => ({
+//         reset,
+// });
+
+// export default connect(mapStateToProps)(Reset);
+
+
+
 import { connect } from 'react-redux';
 import Reset from './Reset';
+import { scoreReset } from "../../data/actions";
 
-const mapStateToProps = ({ reset }) => ({
-        reset,
+const mapDispatchToProps = ( dispatch ) => ({
+        scoreReset: () => dispatch(scoreReset())
 });
 
-export default connect(mapStateToProps)(Reset);
+export default connect(null, mapDispatchToProps)(Reset);
