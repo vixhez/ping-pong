@@ -16,9 +16,12 @@ export const scoreReset = () => {
     }
 }
 
-export const saveForm = (data) => {
+export const saveForm = ({ player1Name, player2Name, winScore, alternate }) => {
     return {
         type: "SAVE_FORM",
-        data: data,
+        player1Name,
+        player2Name,
+        winScore: +winScore,
+        alternate: +alternate,
     }
 }

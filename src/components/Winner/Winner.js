@@ -1,5 +1,5 @@
-const Winner = ({ winner }) => winner !== null ? (
-    <h2 className="alert alert-success">Player { winner } wins!</h2>
+const Winner = ({ winner, playerName }) => winner !== null ? (
+<h2 className="alert alert-success">{ playerName } wins! Well done, { playerName }!</h2>
 ) : null;
 
 export default Winner;

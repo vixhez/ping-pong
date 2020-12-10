@@ -7,7 +7,7 @@ const mapStateToProps = ({ info, player1Name, player2Name, winScore, alternate }
         player1Name,
         player2Name,
         winScore,
-        alternate
+        alternate,
 });
 
 const mapDispatchToProps = dispatch => {

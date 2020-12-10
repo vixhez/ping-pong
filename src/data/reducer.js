@@ -17,12 +17,12 @@ const player1Reducer = (state) => {
   const server = (state) => {
     const totalScore = state.player1 + state.player2;
   
-    if (totalScore % 5 === 0 && state.serving === 1) {
+    if (totalScore % state.alternate === 0 && state.serving === 1) {
       return {
         ...state,
         serving: 2
       }
-    } else if (totalScore % 5 === 0 && state.serving === 2) {
+    } else if (totalScore % state.alternate === 0 && state.serving === 2) {
       return {
         ...state,
         serving: 1
@@ -32,15 +32,15 @@ const player1Reducer = (state) => {
   };
   
   const winner = (state) => {
-    if (state.player1 === 21) {
+    if (state.player1 >= state.winScore) {
       return {
         ...state,
-        winner: 1
+        winner: 1,
       }
-    } else if (state.player2 === 21) {
+    } else if (state.player2 >= state.winScore) {
       return {
         ...state,
-        winner: 2
+        winner: 2,
       }
     }
     return state;
@@ -49,18 +49,25 @@ const player1Reducer = (state) => {
 const saveReducer = (state, action) => ({
   ...state,
   info: true,
-  player1Name: action.data.player1Name,
-  player2Name: action.data.player2Name,
-  winScore: action.data.winScore,
-  alternate: action.data.alternate,
+  player1Name: action.player1Name,
+  player2Name: action.player2Name,
+  winScore: action.winScore,
+  alternate: action.alternate,
 });
 
+// Current state of the app with action that changes it, returning a valid copy of the new state.
 const reducer = (state, action) => {
     switch (action.type) {
       case "PLAYER_1_SCORED": return winner(server(player1Reducer(state)));
       case "PLAYER_2_SCORED": return winner(server(player2Reducer(state)));
-      case "SCORE_RESET": return initialState;
-      // case "INFO_RECEIVED": return infoReducer();
+      // case "SCORE_RESET": return initialState;
+      case "SCORE_RESET": return {
+        ...initialState,
+        player1Name: state.player1Name,
+        player2Name: state.player2Name,
+        winScore: state.winScore,
+        alternate: state.alternate,
+      }
       case "SAVE_FORM": return saveReducer(state, action);
   
       default: return state;
