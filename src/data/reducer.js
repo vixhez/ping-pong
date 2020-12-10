@@ -46,11 +46,22 @@ const player1Reducer = (state) => {
     return state;
 }; 
 
+const saveReducer = (state, action) => ({
+  ...state,
+  info: true,
+  player1Name: action.data.player1Name,
+  player2Name: action.data.player2Name,
+  winScore: action.data.winScore,
+  alternate: action.data.alternate,
+});
+
 const reducer = (state, action) => {
     switch (action.type) {
       case "PLAYER_1_SCORED": return winner(server(player1Reducer(state)));
       case "PLAYER_2_SCORED": return winner(server(player2Reducer(state)));
       case "SCORE_RESET": return initialState;
+      // case "INFO_RECEIVED": return infoReducer();
+      case "SAVE_FORM": return saveReducer(state, action);
   
       default: return state;
     }

@@ -15,3 +15,10 @@ export const scoreReset = () => {
         type: "SCORE_RESET",
     }
 }
+
+export const saveForm = (data) => {
+    return {
+        type: "SAVE_FORM",
+        data: data,
+    }
+}

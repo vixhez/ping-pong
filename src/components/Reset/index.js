@@ -7,6 +7,7 @@
 
 // export default connect(mapStateToProps)(Reset);
 
+// the above is prop drilling... to be avoided!
 
 
 import { connect } from 'react-redux';

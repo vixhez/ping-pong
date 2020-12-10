@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 import Player from './Player';
 import { player2Scored } from "../../data/actions";
 
-const mapStateToProps = ({ player2, winner, serving }) => ({
+const mapStateToProps = ({ player2, winner, serving, player2Name }) => ({
         playerScore: player2,
         winner: winner,
-        playerText: "Player 2",
+        playerText: player2Name,
         serving: serving === 2,
 });
 
